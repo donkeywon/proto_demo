@@ -1,0 +1,17 @@
+syntax = "proto3";
+package proto;
+option go_package = ".;pb";
+
+import "proto/validate/validate.proto";
+
+service Center {
+  rpc Call (CallReq) returns (CallResp) {}
+}
+
+message CallReq {
+  string msg = 1 [(validate.rules).string.min_len = 1];
+}
+
+message CallResp {
+  bool ok = 1;
+}
